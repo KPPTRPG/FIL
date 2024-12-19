@@ -1,2 +1,4 @@
-include/FairyInLnk/MaxStrLen.h
+include/FIL/MaxStrLen.h
 build/
+.vscode/
+.vs/

@@ -3,4 +3,4 @@
 include(CMakeFindDependencyMacro)
 
 include(CMakePackageConfigHelpers)
-include("${CMAKE_CURRENT_LIST_DIR}/FairyInLnkTargets.cmake")
+include("${CMAKE_CURRENT_LIST_DIR}/FILTargets.cmake")

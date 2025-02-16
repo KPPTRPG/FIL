@@ -13,45 +13,6 @@ ae2f_SHAREDEXPORT void FIL_GlobPrint(const FIL_Glob_t* data, FILE* out) {
     fprintf(out, "Etc:\n%s\n\n", data->Etc);
 }
 
-#define __esc 27
-
-static _Bool FIL_GlobScan_Imp(
-    FIL_Glob_t* buff, 
-    FILE* in, 
-    char got
-) {
-    int bg_size = 0, etc_size = 0, gotchar = 0;
-    switch(got) {
-        case FIL_FLAG_GLOB_NAME:
-        fgets_space(buff->Name, sizeof(buff->Name), in);
-        break;
-        case FIL_FLAG_GLOB_PLNAME:
-        fgets_space(buff->PLName, sizeof(buff->PLName), in);
-        break;
-        case FIL_FLAG_GLOB_PROFILE:
-        fgets_space(buff->Profile, sizeof(buff->Profile), in);
-        break;
-        case FIL_FLAG_GLOB_BG:
-        gotchar = 0;
-        while(gotchar != __esc && bg_size < FIL_STRLEN_LONG && gotchar != EOF) {
-            fgets(buff->Background + bg_size, sizeof(buff->Background) - bg_size, in);
-            bg_size = strcspn(buff->Background + bg_size, "\n");
-            gotchar = fgetc(in);
-        }
-        break;
-        case FIL_FLAG_GLOB_ETC:
-        gotchar = 0;
-        while(gotchar != __esc && etc_size < FIL_STRLEN_LONG) {
-            fgets(buff->Etc + etc_size, sizeof(buff->Etc) - etc_size, in);
-            etc_size = strcspn(buff->Etc + bg_size, "\n");
-            gotchar = fgetc(in);
-        }
-        break;
-        default: return 1;
-    }
-    return 1;
-}
-
 #include <FIL/Left.h>
 
 ae2f_SHAREDEXPORT int FIL_GlobScan(FIL_Glob_t* buff, FILE* in, const char* pre) {

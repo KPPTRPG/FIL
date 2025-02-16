@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-
+enable_testing()
 option(FIL_EXBIN "Option for executables. When it is off, main functions will have different names" ON)
 option(FIL_DYLIB "Option for dynamic libraries" OFF)
 option(ae2f_IS_SHARED "" ${KPPTRPG_DYLIB})
@@ -68,5 +68,10 @@ ae2f_CoreLibTent(
 )
 
 link_libraries(${PROJECT_NAME}Adv)
+
+add_executable(
+    ${PROJECT_NAME}Bin
+    "src/main.c"
+)
 
 endif()

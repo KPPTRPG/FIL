@@ -87,11 +87,10 @@ ae2f_SHAREDEXPORT int FIL_AdvInfoScan(
             if(FIL_GlobScan(&buff->Glob, in, __GlobPrefix))
             return 1;
         } break;
-
         case FIL_FLAG_ADV_INFO_BIAS: {
             int ___[2];
             fscanf(in, "%u %u", ___, ___ + 1);
-            buff->Bias = (___[0]) | (___[1] << 2);
+            buff->Bias = (___[0] & 0b11) | ((___[1] & 0b11) << 2);
         } break;
         default: return 0;
     }

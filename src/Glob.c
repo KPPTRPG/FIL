@@ -86,21 +86,10 @@ ae2f_SHAREDEXPORT int FIL_GlobScan(FIL_Glob_t* buff, FILE* in, const char* pre) 
         fgets_space(buff->Profile, sizeof(buff->Profile), in);
         break;
         case FIL_FLAG_GLOB_BG:
-        gotchar = 0;
-        while(gotchar != __esc && bg_size < FIL_STRLEN_LONG) {
-            fgets(buff->Background + bg_size, sizeof(buff->Background) - bg_size, in);
-            bg_size = strcspn(buff->Background + bg_size, "\n");
-            gotchar = fgetc(in);
-        }
+        fgets_termed(buff->Background, FIL_STRLEN_LONG, "`", 1, in);
         break;
         case FIL_FLAG_GLOB_ETC:
-        gotchar = 0;
-        while(gotchar != __esc && etc_size < FIL_STRLEN_LONG) {
-            fgets(buff->Etc + etc_size, sizeof(buff->Etc) - etc_size, in);
-            etc_size = strcspn(buff->Etc + bg_size, "\n");
-            gotchar = fgetc(in);
-        }
-        break;
+        fgets_termed(buff->Etc, FIL_STRLEN_LONG, "`", 1, in);
         default: return 0;
     }
     return 0;

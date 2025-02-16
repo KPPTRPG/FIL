@@ -12,7 +12,7 @@
 typedef struct FIL_Adv {
     FIL_AdvInfo_t Info;
     FIL_AdvStat_t Stat;
-} FIL_Adv_t;
+} FIL_Adv, FIL_Adv_t;
 
 #include <stdio.h>
 

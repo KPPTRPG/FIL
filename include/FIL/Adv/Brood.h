@@ -12,7 +12,7 @@ typedef struct FIL_AdvBrood {
     FIL_Str_t Name;
     FIL_StrLong_t Description;
     FIL_AdvStat_t Status;
-} FIL_AdvBrood_t;
+} FIL_AdvBrood, FIL_AdvBrood_t;
 
 
 #include <stdio.h>

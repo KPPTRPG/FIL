@@ -1,10 +1,13 @@
 #include <FIL/Adv/Brood.h>
+#include <string.h>
+
 ae2f_SHAREDEXPORT void FIL_AdvBroodPrint(
     const FIL_AdvBrood_t* data, FILE* out
 ) {
-    fprintf(out, "Brood\n");
+    fputs("Brood Start", out);
     fprintf(out, "Name: %s\n", data->Name);
     fprintf(out, "Description:\n%s\n\n", data->Description);
+    FIL_AdvStatPrint(&data->Status, out);
 }
 
 #include <FIL/IO.h>
@@ -26,15 +29,14 @@ ae2f_SHAREDEXPORT int FIL_AdvBroodScan(
     __StatPrefix[__s] = FIL_FLAG_ADV_STAT; // for stat
 
     LOOP_BEG:
-
     #pragma region LOOP
-    #error TODO: implement this shit
+
     switch(FIL_Left[__s]) {
         case FIL_FLAG_ADV_BROOD_NAME: {
-
+            fgets_space(buff->Name, FIL_STRLEN, in);
         }
         case FIL_FLAG_ADV_BROOD_DESC: {
-
+            fgets_termed(buff->Description, FIL_STRLEN_LONG, "`", 1, in);
         }
         case FIL_FLAG_ADV_BROOD_STAT: {
             if(FIL_AdvStatScan(&buff->Status, in, __StatPrefix))
@@ -55,6 +57,5 @@ ae2f_SHAREDEXPORT int FIL_AdvBroodScan(
     for(size_t i = 0; i < FIL_FLAGMAXLEN; i++)
     FIL_Left[i] = 0;
     FIL_LeftLen = 0;
-    return 1;
     return 0;
 }

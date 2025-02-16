@@ -156,6 +156,33 @@
 /// @see FIL_FLAG_ADV_STAT
 #define FIL_FLAG_ADV_STAT_G 'g'
 
+/// @brief -asn
+/// @see FIL_FLAG
+/// @see FIL_FLAG_ADV
+/// @see FIL_FLAG_ADV_STAT
+#define FIL_FLAG_ADV_STAT_LNK 'n'
+
+/// @brief -asn0
+/// @see FIL_FLAG
+/// @see FIL_FLAG_ADV
+/// @see FIL_FLAG_ADV_STAT
+/// @see FIL_FLAG_ADV_STAT_LNK
+#define FIL_FLAG_ADV_STAT_LNK0 '0'
+
+/// @brief -asn1
+/// @see FIL_FLAG
+/// @see FIL_FLAG_ADV
+/// @see FIL_FLAG_ADV_STAT
+/// @see FIL_FLAG_ADV_STAT_LNK
+#define FIL_FLAG_ADV_STAT_LNK1 '1'
+
+/// @brief -asn2
+/// @see FIL_FLAG
+/// @see FIL_FLAG_ADV
+/// @see FIL_FLAG_ADV_STAT
+/// @see FIL_FLAG_ADV_STAT_LNK
+#define FIL_FLAG_ADV_STAT_LNK2 '2'
+
 #pragma endregion
 
 #pragma endregion

@@ -12,7 +12,7 @@ typedef struct FIL_AdvInfo {
     FIL_Bias_t Bias;
     FIL_AdvBrood_t Brood;
     FIL_Glob_t Glob;
-} FIL_AdvInfo_t;
+} FIL_AdvInfo, FIL_AdvInfo_t;
 
 #include <stdio.h>
 ae2f_SHAREDCALL ae2f_extern void FIL_AdvInfoPrint(

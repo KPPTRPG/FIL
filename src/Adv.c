@@ -7,6 +7,9 @@
 /// @return 
 ae2f_SHAREDEXPORT int FIL_AdvScan(FIL_Adv_t* buff, FILE* in) {
     buff[0] = (FIL_Adv_t) {0, };
+    
+    FIL_AdvInfoScan(&buff->Info, in, "");
+    FIL_AdvStatScan(&buff->Stat, in, "");
 }
 
 /// @brief 

@@ -8,7 +8,10 @@ set(FIL_STRLEN 512 CACHE STRING "")
 set(FIL_STRLEN_LONG 32768 CACHE STRING "")
 set(FIL_FLAGMAXLEN 16 CACHE STRING "")
 
-add_subdirectory(ae2f)
+include(cmake.cmake)
+
+ae2f_CoreLibFetch(ae2f Ds main)
+
 link_libraries(Ds)
 
 project(FIL)

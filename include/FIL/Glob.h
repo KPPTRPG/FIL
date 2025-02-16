@@ -7,7 +7,7 @@
 typedef struct FIL_Glob {
     FIL_Str_t Name, PLName, Profile;
     FIL_StrLong_t Background, Etc;
-} FIL_Glob_t;
+} FIL_Glob, FIL_Glob_t;
 
 #include <stdio.h>
 #include <stdbool.h>

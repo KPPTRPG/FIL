@@ -11,6 +11,9 @@ ae2f_SHAREDEXPORT void FIL_AdvStatPrint(const FIL_AdvStat_t* data, FILE* out) {
     ____print(CON);
     ____print(AGI);
     ____print(G);
+    ____print(LNK[0]);
+    ____print(LNK[1]);
+    ____print(LNK[2]);
 }
 
 #undef ____print
@@ -66,6 +69,24 @@ ae2f_SHAREDEXPORT int FIL_AdvStatScan(FIL_AdvStat_t* buff, FILE* in, const char*
 
         case FIL_FLAG_ADV_STAT_STR:
         fscanf(in, "%u", &buff->STR);
+        break;
+
+        case FIL_FLAG_ADV_STAT_LNK0:
+        if(__s && FIL_Left[__s - 1] == FIL_FLAG_ADV_STAT_LNK)
+        fscanf(in, "%u", buff->LNK);
+        else return 1;
+        break;
+
+        case FIL_FLAG_ADV_STAT_LNK1:
+        if(__s && FIL_Left[__s - 1] == FIL_FLAG_ADV_STAT_LNK)
+        fscanf(in, "%u", buff->LNK + 1);
+        else return 1;
+        break;
+
+        case FIL_FLAG_ADV_STAT_LNK2:
+        if(__s && FIL_Left[__s - 1] == FIL_FLAG_ADV_STAT_LNK)
+        fscanf(in, "%u", buff->LNK + 2);
+        else return 1;
         break;
 
         default: return 0;

@@ -1,4 +1,9 @@
-include/FIL/MaxStrLen.h
+include/KPP/FIL/MaxStrLen/Env.h
+include/KPP/FIL/Log/Log.h
 build/
 .vscode/
 .vs/
+submod
+
+\
+.*/

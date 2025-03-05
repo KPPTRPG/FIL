@@ -1,77 +1,81 @@
 cmake_minimum_required(VERSION 3.10)
 enable_testing()
-option(FIL_EXBIN "Option for executables. When it is off, main functions will have different names" ON)
 option(FIL_DYLIB "Option for dynamic libraries" OFF)
+option(FIL_LOG "Logger on for " ON)
 option(ae2f_IS_SHARED "" ${KPPTRPG_DYLIB})
 
 set(FIL_STRLEN 512 CACHE STRING "")
-set(FIL_STRLEN_LONG 32768 CACHE STRING "")
-set(FIL_FLAGMAXLEN 16 CACHE STRING "")
+set(FIL_STRLINE 30 CACHE STRING "")
 
 include(cmake.cmake)
 
-ae2f_CoreLibFetch(ae2f Ds main)
+ae2f_CoreLibFetch(ae2f Core main)
 
-link_libraries(Ds)
+link_libraries(Core)
 
 project(FIL)
-
 if(NOT TARGET ${PROJECT_NAME})
-configure_file(${PROJECT_SOURCE_DIR}/hin/MaxStrLen.h ${PROJECT_SOURCE_DIR}/include/FIL/MaxStrLen.h)
-configure_file(${PROJECT_SOURCE_DIR}/hin/Left.h ${PROJECT_SOURCE_DIR}/include/FIL/Left.h)
-ae2f_CoreLibTent(
-    ${PROJECT_NAME}
-    INTERFACE
-    include KPP
-    "include/FIL.h"
-    "include/FIL/MaxStrLen.h"
-    "include/FIL/Bias.h"
-    "include/FIL/Flag.h"
-)
 
-link_libraries(${PROJECT_NAME})
+configure_file(${PROJECT_SOURCE_DIR}/hin/MaxStrLen.h    ${PROJECT_SOURCE_DIR}/include/KPP/FIL/MaxStrLen/Env.h)
+configure_file(${PROJECT_SOURCE_DIR}/hin/Log.h          ${PROJECT_SOURCE_DIR}/include/KPP/Log/Log.h)
 
 ae2f_CoreLibTent(
-    ${PROJECT_NAME}IO
-    ${ae2f_LIBPREFIX}
-    include KPP
-    "include/FIL/IO.h"
-    "include/FIL/Left.h"
-    "src/IO.c"
-    "src/Left.c"
+    KPP INTERFACE include KPP
+    include/KPP/Log.h
+    include/KPP/Log/Log.h
+    include/KPP/InitWithArgs.h
+    hin/Log.h
 )
-
-link_libraries(${PROJECT_NAME}IO)
+target_link_libraries(KPP INTERFACE Core)
 
 ae2f_CoreLibTent(
-    ${PROJECT_NAME}Glob
-    ${ae2f_LIBPREFIX}
-    include KPP
-    "include/FIL/Glob.h"
-    "src/Glob.c"
-)
+    FIL-H INTERFACE include KPP
+    include/KPP/FIL.h
+    include/KPP/FIL/Bias.h
+    include/KPP/FIL/Glob.h
+    hin/MaxStrLen.h
+    include/KPP/FIL/MaxStrLen.h
+    include/KPP/FIL/MaxStrLen/Env.h
 
-link_libraries(${PROJECT_NAME}Glob)
+    hin/Log.h
+    include/KPP/Log.h
+    include/KPP/Log/Log.h
+)
+target_link_libraries(FIL-H INTERFACE KPP)
 
 ae2f_CoreLibTent(
-    ${PROJECT_NAME}Adv
-    ${ae2f_LIBPREFIX}
-    include KPP
-    "include/FIL/Adv.h"
-    "include/FIL/Adv/Brood.h"
-    "include/FIL/Adv/Info.h"
-    "include/FIL/Adv/Stat.h"
-    "src/Adv.c"
-    "src/Adv/Brood.c"
-    "src/Adv/Info.c"
-    "src/Adv/Stat.c"
+    FIL ${ae2f_LIBPREFIX} include KPP
+    src/FIL/Bias.c
+    src/FIL/MaxStrLen.c
+    src/FIL/warp.h
 )
 
-link_libraries(${PROJECT_NAME}Adv)
+target_link_libraries(FIL PUBLIC FIL-H)
+
+ae2f_CoreLibTent(
+    FILAdv-H INTERFACE include KPP
+    include/KPP/FIL/Adv.h
+    include/KPP/FIL/Adv/Brood.h
+    include/KPP/FIL/Adv/Info.h
+    include/KPP/FIL/Adv/Stat.h
+)
+
+target_link_libraries(FILAdv-H INTERFACE FIL-H)
+
+ae2f_CoreLibTent(
+    FILAdv ${ae2f_LIBPREFIX} include KPP
+    src/FIL/Adv.c
+    src/FIL/Adv/warp.h
+    src/FIL/Adv/Info.c
+    src/FIL/Adv/Brood.c
+    src/FIL/Adv/Stat.c
+)
+
+target_link_libraries(FILAdv PUBLIC FILAdv-H)
+target_link_libraries(FILAdv PUBLIC FIL)
 
 add_executable(
-    ${PROJECT_NAME}Bin
-    "src/main.c"
+    FILAdvBin src/FIL/Adv/main.c
 )
 
 endif()

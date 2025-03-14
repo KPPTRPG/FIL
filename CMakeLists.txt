@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 enable_testing()
 option(KPP_DYLIB "Option for dynamic libraries" OFF)
-option(KPP_LOG "Logger on for " ON)
+option(KPP_LOG "Logger on for " OFF)
 option(ae2f_IS_SHARED "" ${KPP_DYLIB})
 
 set(KPP_STRLEN 512 CACHE STRING "")

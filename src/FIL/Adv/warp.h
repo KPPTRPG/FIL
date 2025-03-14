@@ -4,7 +4,8 @@
 enum ewarp {
     	warp_ADV_ENT,
     	warp_ADV_INFO,
-    	warp_ADV_STAT
+    	warp_ADV_STAT,
+		warp_ADV_READ
 };
 
 enum ewarp_ADV_STAT {
@@ -54,7 +55,7 @@ enum ewarp_ADV_BROOD {
 #define warp_loop() (warp_varname) = (warp_key); warp_LOOP
 #define warp_tent() int warp_index = 0, warp_varname = (warp_key)
 #define warp_switchonekey(ch, warp, _val) case ch: warp = _val; break
-#define warp_quit(label) default: { KPP_puts("Matches none. Quitting " #label "."); return warp_index; }
+#define warp_quit(label) default: { KPP_puts("Matches none. Quitting " #label ".\n"); return warp_index; }
 
 #define warp_index i
 #define warp_varname warp

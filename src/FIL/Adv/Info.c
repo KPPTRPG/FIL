@@ -49,7 +49,7 @@ int FIL_AdvInfoInit(
 			{
 				strncpy(
 						info->Gender
-						, argv[i], FIL_STRLEN
+						, argv[i], KPP_STRLEN
 						);
 
 				KPP_printf(
@@ -101,7 +101,7 @@ _warp_ADV_INFO:
 				"- [Gl]ob\n\t "
 				"- [H]eight\n\t "
 				"- [W]eight\n\t "
-				"- [Q]uit"
+				"- [Q]uit\n\n"
 				);
 
 		switch(*argv[i]) {
@@ -130,11 +130,40 @@ _warp_ADV_INFO:
 			default: 
 			{
 _warp_ADV_INFO_NFOUND:
-				KPP_puts("Matches none. Quitting _warp_ADV_INFO.");
+				KPP_puts("Matches none. Quitting _warp_ADV_INFO.\n");
 				return i;
 			} break;
 		}
 	} 
 
 	goto warp_LOOP;
+}
+
+ae2f_SHAREDEXPORT
+void FIL_AdvInfoPrt(
+		const FIL_AdvInfo* adv
+		, FILE* ostream
+		)
+{
+	fputs("Glob:\n", ostream);
+	FIL_GlobPrt(&adv->Glob, ostream);
+
+	fprintf(ostream, "Weight: %u\n", adv->Weight);
+	fprintf(ostream, "Height: %u\n", adv->Height);
+
+	fprintf(ostream, "Age: %u\n", adv->Age);
+
+	fputs("Bias:\n", ostream);
+	FIL_Bias_tPrt(adv->Bias, ostream);
+
+	fputs("Brood:\n", ostream);
+	FIL_AdvBroodPrt(&adv->Brood, ostream);
+
+	fprintf(
+			ostream
+			, "Gender: \"%s\"\n"
+			, adv->Gender
+			);
+
+	fputs("Quit::ADV_INFO\n", ostream);	
 }

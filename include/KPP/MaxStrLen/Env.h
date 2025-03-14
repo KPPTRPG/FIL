@@ -1,0 +1,2 @@
+#define KPP_STRLEN 512
+#define KPP_STRLINE 32

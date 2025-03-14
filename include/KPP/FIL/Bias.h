@@ -32,4 +32,10 @@ typedef uint8_t FIL_Bias_t;
 
 KPP_InitFuncDef(FIL_Bias_t);
 
+ae2f_extern ae2f_SHAREDCALL
+void FIL_Bias_tPrt(
+	FIL_Bias_t adv
+	,FILE* ostream
+);
+
 #endif

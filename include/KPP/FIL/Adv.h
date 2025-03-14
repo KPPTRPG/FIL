@@ -19,12 +19,10 @@ KPP_InitFuncDef(FIL_Adv);
 #include <ae2f/errGlob.h>
 #include <stdio.h>
 
-ae2f_extern ae2f_SHAREDCALL
-ae2f_err_t FIL_AdvSave(
-		const FIL_Adv* adv
-		,FILE* ostream
-);
-
+/**
+ * 
+ * Imp Done.
+ * */
 ae2f_extern ae2f_SHAREDCALL
 void FIL_AdvPrt(
 	const FIL_Adv* adv

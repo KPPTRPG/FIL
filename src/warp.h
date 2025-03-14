@@ -1,31 +1,18 @@
 #ifndef warp_h
 #define warp_h
 
-enum ewarp_BIAS {
-	warp_BIAS,
+enum ewarp_STRLINE {
+	warp_STRLINE,
 
-	warp_BIAS_ORDER,
-	warp_BIAS_ORDER_LAWFUL,
-	warp_BIAS_ORDER_NEUTRAL,
-	warp_BIAS_ORDER_CHAOS,
+	/// @brief For indexing
+	warp_STRLINE_APPEND,
 
-	warp_BIAS_GOOD,
-	warp_BIAS_GOOD_EVIL,
-	warp_BIAS_GOOD_NEUTRAL,
-	warp_BIAS_GOOD_GOOD
-};
-
-enum ewarp_GLOB {
-	warp_GLOB,
-	warp_GLOB_NAME,
-	warp_GLOB_PLNAME,
-	warp_GLOB_PROFILE,
-	warp_GLOB_PRINT,
-	warp_GLOB_BG,
-	warp_GLOB_ETC
+	/// @brief For actually writing
+	warp_STRLINE_WRITE
 };
 
 #endif
+
 
 #pragma region Pure Macro
 

@@ -6,16 +6,22 @@
 
 /// @brief Global information for an object.
 typedef struct FIL_Glob {
-	FIL_Str_t 
+	KPP_Str_t 
 		Name, 
 		PLName, 
 		Profile;
 
-	FIL_StrLong_t 
+	KPP_StrLong_t 
 		Background, 
 		Etc;
 } FIL_Glob;
 
 KPP_InitFuncDef(FIL_Glob);
+
+ae2f_extern ae2f_SHAREDCALL
+void FIL_GlobPrt(
+		const FIL_Glob* adv,
+		FILE* ostream
+		);
 
 #endif

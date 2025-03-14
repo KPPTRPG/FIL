@@ -1,5 +1,5 @@
 #include <string.h>
-#include <KPP/FIL/MaxStrLen.h>
+#include <KPP/MaxStrLen.h>
 #include <KPP/InitWithArgs.h>
 #include <KPP/Log.h>
 
@@ -10,8 +10,8 @@
 #include <stdlib.h>
 
 ae2f_extern ae2f_SHAREDEXPORT
-int FIL_StrLine_tInit(
-		FIL_StrLine_t strline
+int KPP_StrLine_tInit(
+		KPP_StrLine_t strline
 		, int argc
 		, const char** argv
 		)
@@ -28,12 +28,12 @@ int FIL_StrLine_tInit(
 			case warp_STRLINE_APPEND:
 			{
 				lineidx = atoi(argv[i]);
-				lineidx %= FIL_STRLINE;
+				lineidx %= KPP_STRLINE;
 				warp = warp_STRLINE_WRITE;
 
 				KPP_printf(
 						"warp_STRLINE_APPEND, "
-						"Indexing into %u\n"
+						"Indexing into %lu\n"
 						, lineidx
 						);
 			} goto warp_LOOP;
@@ -43,18 +43,18 @@ int FIL_StrLine_tInit(
 				strncpy(
 						strline[lineidx]
 						, argv[i]
-						, FIL_STRLEN
+						, KPP_STRLEN
 						);
 
 				KPP_printf(
 						"warp_STRLINE_WRITE, "
-						"Wrote %u\n%s\n\n"
+						"Wrote %s\n\n"
 						, strline[lineidx]
 						);
 
 				KPP_puts(
 						"Migrating into "
-						"_warp_STRLINE..."
+						"_warp_STRLINE...\n"
 						);
 			} break;
 		}
@@ -69,7 +69,7 @@ _warp_STRLINE:
 				"_warp_STRLINE: \n\t> "
 				"Getting token among: \n\t "
 				"- [A]ppend\n\t "
-				"- [Q]uit"
+				"- [Q]uit\n\n"
 				);
 
 		switch(warp)
@@ -78,4 +78,23 @@ _warp_STRLINE:
 			warp_switchonekey('A', warp, warp_STRLINE_APPEND);
 		}
 	} goto warp_LOOP;
+}
+
+ae2f_SHAREDEXPORT
+void KPP_StrLine_tPrt(
+	const KPP_StrLine_t adv
+	,FILE* ostream
+) 
+{
+	for(size_t i = 0; i < KPP_STRLINE; i++) 
+	{
+		if(*adv[i]) 
+		fprintf(
+				ostream
+				, "Append %lu \"%s\"\n"
+				, i
+				, adv[i]
+				);
+	}
+	fputs("Quit::StrLine\n", ostream);
 }

@@ -1,3 +1,3 @@
 #include <ae2f/Call.h>
 
-#define FIL_LOG @FIL_LOG@
+#define KPP_LOG @KPP_LOG@

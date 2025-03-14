@@ -19,7 +19,7 @@ KPP_InitImp(
 		switch (warp) {
 			warpcase(warp_ADV_BROOD);
 			warp_default();
-			case warp_ADV_BROOD_STAT: 
+			case warp_ADV_BROOD_STAT:
 			{
 				i += FIL_AdvStatInit(
 						&brood->Status 
@@ -32,7 +32,7 @@ KPP_InitImp(
 				strncpy(
 						brood->Name
 						, argv[i]
-						, FIL_STRLEN
+						, KPP_STRLEN
 						);
 
 				
@@ -40,7 +40,7 @@ KPP_InitImp(
 
 			case warp_ADV_BROOD_DESC: 
 			{
-				i += FIL_StrLine_tInit(
+				i += KPP_StrLine_tInit(
 						brood->Description
 						, argc - i, argv + i
 						) - 1;
@@ -59,7 +59,7 @@ _warp_ADV_BROOD:
 				"- [N]ame\n\t "
 				"- [S]tatus\n\t "
 				"- [D]escription\n\t "
-				"- [Q]uit"
+				"- [Q]uit\n\n"
 				);
 
 		switch (*argv[i])
@@ -83,10 +83,25 @@ _warp_ADV_BROOD:
 
 			
 			default:
-			KPP_puts("Matches none. Quitting _warp_ADV_BROOD.");
+			KPP_puts("Matches none. Quitting _warp_ADV_BROOD.\n");
 			return i;
 		}
 	} 
 
 	goto warp_LOOP;
+}
+
+ae2f_SHAREDEXPORT
+void FIL_AdvBroodPrt(
+	const FIL_AdvBrood* adv
+	,FILE* ostream
+) {
+	fprintf(ostream, "Name: \"%s\"\n", adv->Name);
+	fputs("Description:\n", ostream);
+	KPP_StrLine_tPrt(adv->Description, ostream);
+
+	fputs("Status_Brood:\n", ostream);
+	FIL_AdvStatPrt(&adv->Status, ostream);
+
+	fputs("Quit::AdvBrood\n", ostream);
 }

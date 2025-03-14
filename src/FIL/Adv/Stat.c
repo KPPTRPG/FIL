@@ -7,6 +7,40 @@
 
 #define KPP_AdvStatXPMax 100
 
+ae2f_SHAREDEXPORT
+void FIL_AdvStatPrt(
+	const FIL_AdvStat* adv
+	,FILE* ostream
+)
+{
+	fprintf(
+		ostream
+		
+		, "AGI:	%u\n"
+		"CON:	%u\n"
+		"G:		%u\n"
+		"INT:	%u\n"
+		"LNK 0	%u\n"
+		"LNK 1	%u\n"
+		"LNK 2	%u\n"
+		"LP:	%u\n"
+		"SP:	%u\n"
+		"STR:	%u\n"
+		"Quit::FIL_AdvStat\n"
+
+		, adv->AGI
+		, adv->CON
+		, adv->G
+		, adv->INT
+		, adv->LNK[0]
+		, adv->LNK[1]
+		, adv->LNK[2]
+		, adv->LP
+		, adv->SP
+		, adv->STR
+	);
+}
+
 ae2f_extern ae2f_SHAREDEXPORT
 KPP_InitImp(FIL_AdvStat, stat) {
 	warp_tent();
@@ -25,7 +59,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 				KPP_printf(
 						"warp_ADV_STAT_AGI, "
-						"setting value: %d[%d]\n",
+						"setting value: %d[%d]\n"
 						, _V, V
 						);
 
@@ -41,7 +75,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 				KPP_printf(
 						"warp_ADV_STAT_CON, "
-						"setting value: %d[%d]\n",
+						"setting value: %d[%d]\n"
 						, _V, V
 						);
 
@@ -57,7 +91,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 				KPP_printf(
 						"warp_ADV_STAT_G, "
-						"setting value: %d[%d]\n",
+						"setting value: %d[%d]\n"
 						, _V, V
 						);
 
@@ -73,7 +107,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 				KPP_printf(
 						"warp_ADV_STAT_INT, "
-						"setting value: %d[%d]\n",
+						"setting value: %d[%d]\n"
 						, _V, V
 						);
 
@@ -105,7 +139,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 				KPP_printf(
 						"warp_ADV_STAT_LNK0, "
-						"setting value: %d[%d]\n",
+						"setting value: %d[%d]\n"
 						, _V, V
 						);
 
@@ -122,7 +156,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 				KPP_printf(
 						"warp_ADV_STAT_LNK1, "
-						"setting value: %d[%d]\n",
+						"setting value: %d[%d]\n"
 						, _V, V
 						);
 
@@ -139,7 +173,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 				KPP_printf(
 						"warp_ADV_STAT_LNK2, "
-						"setting value: %d[%d]\n",
+						"setting value: %d[%d]\n"
 						, _V, V
 						);
 
@@ -154,7 +188,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 				KPP_printf(
 						"warp_ADV_STAT_LP, "
-						"setting value: %d[%d]\n",
+						"setting value: %d[%d]\n"
 						, _V, V
 						);
 
@@ -170,7 +204,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 				KPP_printf(
 						"warp_ADV_STAT_SP, "
-						"setting value: %d[%d]\n",
+						"setting value: %d[%d]\n"
 						, _V, V
 						);
 
@@ -187,7 +221,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 				KPP_printf(
 						"warp_ADV_STAT_STR, "
 						"setting value: %d[%d]\n",
-						, _V, V
+						_V, V
 						);
 
 				stat->STR = V;
@@ -201,7 +235,7 @@ KPP_InitImp(FIL_AdvStat, stat) {
 
 	KPP_puts(
 			"index ran out \n\t> "
-			"Quitting warp_ADV_STAT"
+			"Quitting warp_ADV_STAT\n\n"
 			);
 	return i;
 
@@ -217,7 +251,8 @@ _warp_ADV_STAT:
 				"- [LP] \n\t "
 				"- [SP] \n\t "
 				"- [ST]R \n\t "
-				"- [Q]uit"
+				"- [I]NT \n\t "
+				"- [Q]uit\n\n"
 				);
 
 		switch(*argv[i])
@@ -254,7 +289,7 @@ __QUIT_GLOBAL:
 				KPP_puts(
 						"Got [S]. switching among... \n\t "
 						"- S[P] \n\t "
-						"- S[T]R"
+						"- S[T]R\n\n"
 						);
 
 				switch(argv[i][1])
@@ -281,7 +316,7 @@ __QUIT_GLOBAL:
 				KPP_puts(
 						"Got [L]. switching among... \n\t "
 						"- L[N]K \n\t "
-						"- L[P] "
+						"- L[P] \n\n"
 						);
 
 				switch(argv[i][1]) 

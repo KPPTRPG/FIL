@@ -120,9 +120,9 @@ _warp_ADV_INFO:
 			
 			case 'G': 
 			{
-				if(*argv[i] == 'e')
+				if(argv[i][1] == 'e')
 					warp = warp_ADV_INFO_GENDER;
-				if(*argv[i] == 'l')
+				if(argv[i][1] == 'l')
 					warp = warp_ADV_INFO_GLOB;
 				else goto _warp_ADV_INFO_NFOUND;
 			} break;

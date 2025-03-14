@@ -2,7 +2,7 @@
 #include <KPP/TokMgr.h>
 
 #define _testfname "TOKMGRTEST"
-#define _okval 3
+#define _okval 8
 
 int main() {
     #if KPP_TOKC >= _okval
@@ -16,12 +16,13 @@ int main() {
         return 2;
     }
 
+    for(size_t i = 0; i < _okval; i++) {
+        puts(tok.tokv[i]);
+    }
+
     if(tok.tokc != _okval) {
         printf("tok.tokc is not okay %d\n", tok.tokc);
         return 3;
-    }
-    for(size_t i = 0; i < _okval; i++) {
-        puts(tok.tokv[i]);
     }
 
     fclose(a);

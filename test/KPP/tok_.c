@@ -78,7 +78,7 @@ int main() {
     TokMgrInit(&mgr, "Hello \"non_hello\" 3");
     printf("%d\n", mgr.tokc);
 
-    for(int i = 0; i < mgr.tokv; i++)
+    for(int i = 0; i < mgr.tokc; i++)
     puts(mgr.tokv[i]);
     return 0;
 }

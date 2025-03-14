@@ -40,7 +40,7 @@ int FIL_GlobInit(
 			{
 				strncpy(
 						glob->Name
-						, argv[argc]
+						, argv[i]
 						, KPP_STRLEN
 						);
 			} break;
@@ -57,11 +57,18 @@ int FIL_GlobInit(
 			{
 				strncpy(
 						glob->PLName
-						, argv[argc]
+						, argv[i]
 						, KPP_STRLEN
 						);
 			} break;
 			case warp_GLOB_PROFILE:
+			{
+				strncpy(
+					glob->Profile
+					, argv[i]
+					, KPP_STRLEN
+					);
+			} break;
 			default: assert(0);
 		}
 		warp_loop():;
@@ -83,7 +90,7 @@ _warp_GLOB:
 				"- [Q]uit\n\n"
 				);
 
-		switch(*argv[argc])
+		switch(*argv[i])
 		{
 _QUIT:
 			warp_quit(_warp_GLOB);
@@ -91,7 +98,7 @@ _QUIT:
 			warp_switchonekey('B', warp, warp_GLOB_BG);
 			warp_switchonekey('E', warp, warp_GLOB_ETC);
 			case 'P': 
-			switch(argv[argc][1])
+			switch(argv[i][1])
 			{
 				warp_switchonekey(
 						'L', 
@@ -103,7 +110,7 @@ _QUIT:
 				goto _QUIT;
 				
 				case 'r':
-				switch(argv[argc][2])
+				switch(argv[i][2])
 				{
 					warp_switchonekey(
 							'o' 

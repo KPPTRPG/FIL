@@ -70,24 +70,19 @@ int KPP_TokMgrInit(
 					, tok[toklen - 1]
 					, tok[toklen - 1]
 					);
+
+			for(char* t = tok - 1; t >= mgr->mem && !*t; t--)
+				*t = ' ';
+
 			if(tok[toklen - 1] != *del)
 			{
-				for(
-						char* t = tok - 1;
-						t >= mgr->mem && !*t
-						; t--
-						)
-				{
-					*t = ' ';
-				}
-
 				i--;
 			}
 
 			else 
 			{
 				KPP_puts("del is done. escaping...\n");
-				tok[toklen] = 0;
+				tok[toklen - 1] = 0;
 				del = 0;
 			}
 
@@ -108,9 +103,10 @@ int KPP_TokMgrInit(
 						, tok + 1
 						);
 
-				if(tok[toklen] == *del)
+				if(tok[toklen - 1] == *del)
 				{
-					tok[toklen] = 0;
+					KPP_puts("Nevermind. We got him\n");
+					tok[toklen - 1] = 0;
 					del = 0;
 					break;
 				}

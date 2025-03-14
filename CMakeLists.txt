@@ -7,8 +7,8 @@ option(ae2f_IS_SHARED "" ${KPP_DYLIB})
 set(KPP_STRLEN 512 CACHE STRING "")
 set(KPP_STRLINE 32 CACHE STRING "")
 set(KPP_TOKL 64 CACHE STRING "")
-set(KPP_TOKC 32 CACHE STRING "")
-set(KPP_TOKML 1024 CACHE STRING "")
+set(KPP_TOKC 1024 CACHE STRING "")
+set(KPP_TOKML 65536 CACHE STRING "")
 
 include(cmake.cmake)
 
@@ -92,21 +92,21 @@ ae2f_CoreLibTent(
 target_link_libraries(FILAdv-H INTERFACE FIL-H)
 
 ae2f_CoreLibTent(
-    FILAdv ${ae2f_LIBPREFIX} include KPP
-    src/FIL/Adv.c
-    src/FIL/Adv/warp.h
-    src/FIL/Adv/Info.c
-    src/FIL/Adv/Brood.c
-    src/FIL/Adv/Stat.c
+	FILAdv ${ae2f_LIBPREFIX} include KPP
+	src/FIL/Adv.c
+	src/FIL/Adv/warp.h
+	src/FIL/Adv/Info.c
+	src/FIL/Adv/Brood.c
+	src/FIL/Adv/Stat.c
 )
 
 target_link_libraries(FILAdv PUBLIC FILAdv-H)
 target_link_libraries(FILAdv PUBLIC FIL)
 
 add_executable(
-    FILAdvBin src/FIL/Adv/main.c
+	FILAB src/FIL/Adv/main.c
 )
 
-target_link_libraries(FILAdvBin PRIVATE FILAdv)
+target_link_libraries(FILAB PRIVATE FILAdv)
 
 endif()

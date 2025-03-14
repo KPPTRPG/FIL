@@ -36,6 +36,7 @@ int KPP_StrLine_tInit(
 						"Indexing into %lu\n"
 						, lineidx
 						);
+
 			} goto warp_LOOP;
 
 			case warp_STRLINE_WRITE:
@@ -72,7 +73,7 @@ _warp_STRLINE:
 				"- [Q]uit\n\n"
 				);
 
-		switch(warp)
+		switch(*argv[i])
 		{
 			warp_quit(_warp_STRLINE);
 			warp_switchonekey('A', warp, warp_STRLINE_APPEND);
@@ -88,7 +89,7 @@ void KPP_StrLine_tPrt(
 {
 	for(size_t i = 0; i < KPP_STRLINE; i++) 
 	{
-		if(*adv[i]) 
+		if(adv[i]) 
 		fprintf(
 				ostream
 				, "Append %lu \"%s\"\n"

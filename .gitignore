@@ -7,4 +7,4 @@ submod
 
 \
 .*/
-*.txt
+# *.txt

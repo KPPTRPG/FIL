@@ -109,4 +109,10 @@ add_executable(
 
 target_link_libraries(FILAB PRIVATE FILAdv)
 
+add_executable(
+	FILABJ src/FIL/Adv/mainjson.c
+)
+
+target_link_libraries(FILABJ PRIVATE FILAdv)
+
 endif()

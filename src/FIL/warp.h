@@ -25,6 +25,13 @@ enum ewarp_GLOB {
 	warp_GLOB_ETC
 };
 
+enum ewarp_QUERY {
+	warp_QUERY,
+	warp_QUERY_LNK,
+	warp_QUERY_ATK,
+	warp_QUERY_DEF
+};
+
 #endif
 
 #pragma region Pure Macro

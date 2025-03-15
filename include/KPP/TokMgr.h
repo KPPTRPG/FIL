@@ -3,7 +3,7 @@
 
 #include <ae2f/Call.h>
 #include <ae2f/Cast.h>
-#include "TokMgr/Lmts.h"
+#include "./TokMgr.auto.h"
 
 /** String */
 typedef char KPP_Tok[KPP_TOKL];

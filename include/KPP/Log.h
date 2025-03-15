@@ -1,4 +1,4 @@
-#include "Log/Log.h"
+#include "Log.auto.h"
 
 #define _KPP_NONE
 

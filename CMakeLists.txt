@@ -10,6 +10,9 @@ set(KPP_TOKL 64 CACHE STRING "")
 set(KPP_TOKC 1024 CACHE STRING "")
 set(KPP_TOKML 65536 CACHE STRING "")
 
+set(FIL_RANGE_DOT_COUNT 5 CACHE STRING "")
+set(FIL_RANGE_OBJ_COUNT 20 CACHE STRING "")
+
 include(cmake.cmake)
 
 ae2f_CoreLibFetch(ae2f Core main)
@@ -21,31 +24,40 @@ if(NOT TARGET ${PROJECT_NAME})
 
 configure_file(
     ${PROJECT_SOURCE_DIR}/hin/MaxStrLen.h 
-    ${PROJECT_SOURCE_DIR}/include/KPP/MaxStrLen/Env.h
+    ${PROJECT_SOURCE_DIR}/include/KPP/MaxStrLen.auto.h
 )
 
 configure_file(
     ${PROJECT_SOURCE_DIR}/hin/Log.h
-    ${PROJECT_SOURCE_DIR}/include/KPP/Log/Log.h
+    ${PROJECT_SOURCE_DIR}/include/KPP/Log.auto.h
 )
 
 configure_file(
     ${PROJECT_SOURCE_DIR}/hin/TokMgr.h 
-    ${PROJECT_SOURCE_DIR}/include/KPP/TokMgr/Lmts.h
+    ${PROJECT_SOURCE_DIR}/include/KPP/TokMgr.auto.h
+)
+
+configure_file(
+	${PROJECT_SOURCE_DIR}/hin/Range.h
+	${PROJECT_SOURCE_DIR}/include/KPP/FIL/Range.auto.h
 )
 
 ae2f_CoreLibTent(
     KPP-H INTERFACE include KPP
+
+    hin/Log.h
     include/KPP/Log.h
-    include/KPP/Log/Log.h
+    include/KPP/Log.auto.h
+
     include/KPP/InitWithArgs.h
+
     hin/MaxStrLen.h
     include/KPP/MaxStrLen.h
-    include/KPP/MaxStrLen/Env.h
-    hin/Log.h
+    include/KPP/MaxStrLen.auto.h
 
+    hin/TokMgr.h
     include/KPP/TokMgr.h
-    include/KPP/TokMgr/Lmts.h
+    include/KPP/TokMgr.auto.h
 )
 target_link_libraries(KPP-H INTERFACE Core)
 
@@ -67,19 +79,27 @@ ae2f_CoreLibTent(
 
     hin/Log.h
     include/KPP/Log.h
-    include/KPP/Log/Log.h
+    include/KPP/Log.auto.h
+
+    hin/Range.h
+    include/KPP/FIL/Range.h
+    include/KPP/FIL/Range.auto.h
 )
 target_link_libraries(FIL-H INTERFACE KPP-H)
 
 ae2f_CoreLibTent(
-    FIL ${ae2f_LIBPREFIX} include KPP
-    src/FIL/Bias.c
-    src/FIL/Glob.c
-    src/FIL/warp.h
+	FIL ${ae2f_LIBPREFIX} include KPP
+	src/FIL/Bias.c
+	src/FIL/Glob.c
+	src/FIL/Range.c
+	src/FIL/warp.h
 )
 
 target_link_libraries(FIL PUBLIC FIL-H)
 target_link_libraries(FIL PUBLIC KPP)
+ae2f_CoreTestTent(
+	FIL test/FIL
+)
 
 ae2f_CoreLibTent(
     FILAdv-H INTERFACE include KPP

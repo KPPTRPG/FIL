@@ -1,5 +1,5 @@
-include/KPP/FIL/MaxStrLen/Env.h
-include/KPP/FIL/Log/Log.h
+# include/KPP/FIL/MaxStrLen/Env.h
+# include/KPP/FIL/Log/Log.h
 build/
 .vscode/
 .vs/
@@ -7,4 +7,6 @@ submod
 
 \
 .*/
+*.auto.h
+
 # *.txt

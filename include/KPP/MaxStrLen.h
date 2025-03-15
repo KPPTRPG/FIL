@@ -2,7 +2,7 @@
 #define KPP_FIL_MaxStrLen_h
 
 #include "InitWithArgs.h"
-#include "MaxStrLen/Env.h"
+#include "./MaxStrLen.auto.h"
 #include <stdio.h>
 
 typedef 

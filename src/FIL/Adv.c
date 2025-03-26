@@ -94,7 +94,7 @@ void FIL_AdvPrt(
  * # DISCLAIMER: it is a constant string builder.
  * */
 #define JSON_STAT(lbl, val, max) "{\"label\":\"" lbl "\",\"value\":" val ",\"max\":" max "}"
-#define JSON_PRM(lbl, val) "{\"label\"" lbl ",\"value\":" val "}"
+#define JSON_PRM(lbl, val) "{\"label\": \"" lbl "\",\"value\":\"" val "\"}"
 
 #define MOV_RANGE 5
 

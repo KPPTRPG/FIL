@@ -3,6 +3,7 @@ enable_testing()
 option(KPP_DYLIB "Option for dynamic libraries" OFF)
 option(KPP_LOG "Logger on for " OFF)
 option(ae2f_IS_SHARED "" ${KPP_DYLIB})
+option(ae2f_CXX "" OFF)
 option(KPP_DEV_TODO "" OFF)
 
 set(KPP_STRLEN 512 CACHE STRING "")

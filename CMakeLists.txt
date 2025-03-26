@@ -16,7 +16,7 @@ ae2f_CoreLibFetch(ae2f Core main)
 
 link_libraries(Core)
 
-project(FIL)
+project(FIL LANGUAGES C CXX)
 if(NOT TARGET ${PROJECT_NAME})
 
 configure_file(
@@ -56,7 +56,7 @@ ae2f_CoreLibTent(
     src/warp.h
 )
 ae2f_CoreTestTent(KPP test/KPP)
-configure_file(${PROJECT_SOURCE_DIR}/test/KPP/tokquery ${PROJECT_BINARY_DIR}/TOKMGRTEST)
+configure_file(${PROJECT_SOURCE_DIR}/test/tokquery ${PROJECT_BINARY_DIR}/TOKMGRTEST)
 target_link_libraries(KPP PUBLIC KPP-H)
 
 ae2f_CoreLibTent(

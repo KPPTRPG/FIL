@@ -40,7 +40,7 @@ void FIL_RangeObjPrt(
 		, FILE* ostream
 		)
 {
-#error "TODO: IMP"
+#include <KPP/todo_imp.auto.h> 
 }
 
 ae2f_SHAREDEXPORT
@@ -49,8 +49,7 @@ size_t FIL_RangeObjMatch(
 		, const FIL_RangeObj b
 		)
 {
-#error "TOOD: IMP"
-
+#include <KPP/todo_imp.auto.h>
 	for(size_t i = 0; i < FIL_RANGE_OBJ_COUNT; i++)
 	{
 		

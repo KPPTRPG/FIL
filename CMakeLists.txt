@@ -3,6 +3,7 @@ enable_testing()
 option(KPP_DYLIB "Option for dynamic libraries" OFF)
 option(KPP_LOG "Logger on for " OFF)
 option(ae2f_IS_SHARED "" ${KPP_DYLIB})
+option(KPP_DEV_TODO "" OFF)
 
 set(KPP_STRLEN 512 CACHE STRING "")
 set(KPP_STRLINE 32 CACHE STRING "")
@@ -40,6 +41,11 @@ configure_file(
 configure_file(
 	${PROJECT_SOURCE_DIR}/hin/Range.h
 	${PROJECT_SOURCE_DIR}/include/KPP/FIL/Range.auto.h
+)
+
+configure_file(
+	${PROJECT_SOURCE_DIR}/hin/todo_imp.h
+	${PROJECT_SOURCE_DIR}/include/KPP/todo_imp.auto.h
 )
 
 ae2f_CoreLibTent(
